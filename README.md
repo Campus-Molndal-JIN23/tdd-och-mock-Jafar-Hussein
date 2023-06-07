@@ -3,9 +3,7 @@
 # Jafars Weather Service
 
 ## Description
-
-Väderserviceapplikationen är ett projekt som tillhandahåller väderprognoser och relaterade funktioner. Den integrerar med en Väder-API för att hämta exakt väderinformation. Projektet följer metoden Test-Driven Development (TDD), vilket säkerställer kodkvalitet genom rigorös testning. Mockobjekt används för att isolera kod under testning.
-
+WeatherService Testning med JUnit och Mockito är ett projekt som syftar till att testa funktionaliteten i en webbapplikation för väderprognoser. Vi använder JUnit och Mockito för att skapa testfall och kontrollera att WeatherService-klassen fungerar korrekt. Målet är att säkerställa att applikationen kan hämta korrekt väderinformation för olika platser och hantera eventuella fel och problem.
 
 ## Installation
 + ladda ner git
