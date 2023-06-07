@@ -15,6 +15,9 @@ public class WeatherService {
     public List<WeatherForecast> getWeatherForecast(String location, Date date) {
         return externalService.getForecast(location, date);
     }
+    public WeatherForecast searchCityByWeather(String weather) {
+        return externalService.searchCityByWeather(weather);
+    }
     public void updateWeather(String location) {
         externalService.updateWeather(location);
     }

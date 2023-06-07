@@ -5,18 +5,22 @@ import java.util.Date;
 public class WeatherForecast {
     private double temperature;
     private double windSpeed;
-    private int clouds;
+    private String clouds;
     private String city;
     private String country;
+
     private Date date;
 
-    public WeatherForecast(double temperature, double windSpeed, int clouds, String city, String country, Date date) {
+    private String weather;
+
+    public WeatherForecast(double temperature, double windSpeed, String clouds, String city, String country, Date date, String weather) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.clouds = clouds;
         this.city = city;
         this.country = country;
         this.date = date;
+        this.weather = weather;
     }
 
     public double getTemperature() {
@@ -35,11 +39,11 @@ public class WeatherForecast {
         this.windSpeed = windSpeed;
     }
 
-    public int getClouds() {
+    public String getClouds() {
         return clouds;
     }
 
-    public void setClouds(int clouds) {
+    public void setClouds(String clouds) {
         this.clouds = clouds;
     }
 
@@ -57,6 +61,14 @@ public class WeatherForecast {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
+
+    public String getWeather() {
+        return weather;
     }
     public Date getDate() {
         return date;

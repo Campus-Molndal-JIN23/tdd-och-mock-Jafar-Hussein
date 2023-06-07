@@ -36,7 +36,7 @@ public class WeatherServiceTest {
         WeatherForecast mockForecast = Mockito.mock(WeatherForecast.class);
 
         // Definiera platsen för prognosen
-        String location = "City";
+        String location = "Gothenburg";
 
         // Mocka beteendet för den externa tjänsten
         when(weatherApi.getCurrentForecast(location)).thenReturn(mockForecast);
@@ -52,12 +52,12 @@ public class WeatherServiceTest {
         // Skapa en mock WeatherForecast-objekt
         WeatherForecast mockForecast = mock(WeatherForecast.class);
 
-        // Definiera beteendet för mockobjektet
+        // Definiera beteendet för mock objektet
         when(mockForecast.getTemperature()).thenReturn(25.5);
         when(mockForecast.getWindSpeed()).thenReturn(12.3);
-        when(mockForecast.getClouds()).thenReturn(75);
-        when(mockForecast.getCity()).thenReturn("City1");
-        when(mockForecast.getCountry()).thenReturn("Country1");
+        when(mockForecast.getClouds()).thenReturn("Sunny");
+        when(mockForecast.getCity()).thenReturn("Stockholm");
+        when(mockForecast.getCountry()).thenReturn("Sweden");
         when(mockForecast.getDate()).thenReturn(new Date());
 
         // Mocka den förväntade prognoslistan
@@ -65,7 +65,7 @@ public class WeatherServiceTest {
         expectedForecastList.add(mockForecast);
 
          // Definiera platsen och datumet för prognosen
-        String location = "City";
+        String location = "Stockholm";
         Date date = new Date();
 
         // Mocka beteendet för den externa tjänsten
@@ -78,6 +78,18 @@ public class WeatherServiceTest {
         assertEquals(expectedForecastList, actualForecastList);
     }
 
+    @Test
+    public void testSearchCityByWeather(){
+        //arrange
+        WeatherForecast mockForecast = mock(WeatherForecast.class);
+        String value = "Sunny";
+        when(weatherApi.searchCityByWeather(value)).thenReturn(mockForecast);
+        //act
+        WeatherForecast actualForecast = sut.searchCityByWeather("Sunny");
+
+        //assert
+        assertEquals(mockForecast, actualForecast);
+    }
 
     @Test
     public void testUpdateWeather() {
