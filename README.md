@@ -4,7 +4,7 @@
 
 ## Description
 
-Väderserviceapplikationen är ett projekt som tillhandahåller väderprognoser och relaterade funktioner. Den integrerar med en Väder-API för att hämta exakt väderinformation. Projektet följer metoden Test-Driven Development (TDD), vilket säkerställer kodkvalitet genom rigorös testning. Mockobjekt används för att isolera kod under testning. Implementerat i Java, består applikationen av klasser som VäderService, VäderAPI och Väderprognos. Projektet prioriterar modulär design, tydlig uppdelning av ansvar och hantering av ogiltiga inmatningar. Sammantaget levererar det en pålitlig och effektiv väderservice som gör det möjligt för användare att planera sina aktiviteter på ett effektivt sätt.
+Väderserviceapplikationen är ett projekt som tillhandahåller väderprognoser och relaterade funktioner. Den integrerar med en Väder-API för att hämta exakt väderinformation. Projektet följer metoden Test-Driven Development (TDD), vilket säkerställer kodkvalitet genom rigorös testning. Mockobjekt används för att isolera kod under testning.
 
 
 ## Installation
