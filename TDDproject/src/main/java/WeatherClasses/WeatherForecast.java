@@ -71,5 +71,20 @@ public class WeatherForecast {
         return date;
     }
 
-}
+    public String toJSON() {
+        String json = "{";
+        json += "\"temperature\":" + temperature + ",";
+        json += "\"windSpeed\":" + windSpeed + ",";
+        json += "\"clouds\":\"" + clouds + "\",";
+        json += "\"city\":\"" + city + "\",";
+        json += "\"country\":\"" + country + "\",";
+        json += "\"date\":\"" + date + "\",";
+        json += "\"weather\":\"" + weather + "\",";
+        json += "\"lat\":" + lat + ",";
+        json += "\"lon\":" + lon;
+        json += "}";
+        return json;
+    }
+    }
+
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class WeatherService {
     final private WeatherApi externalService;
+
     public WeatherService(WeatherApi externalService) {
         this.externalService = externalService;
     }
@@ -47,4 +48,53 @@ public class WeatherService {
         externalService.updateWeather(location);
     }
 
+    // Convert WeatherForecast to JSON string
+    private String toJSON(WeatherForecast forecast) {
+        String json = "{";
+        json += "\"temperature\":" + forecast.getTemperature() + ",";
+        json += "\"windSpeed\":" + forecast.getWindSpeed() + ",";
+        json += "\"clouds\":\"" + forecast.getClouds() + "\",";
+        json += "\"city\":\"" + forecast.getCity() + "\",";
+        json += "\"country\":\"" + forecast.getCountry() + "\",";
+        json += "\"date\":\"" + forecast.getDate() + "\",";
+        json += "\"weather\":\"" + forecast.getWeather() + "\",";
+        json += "\"lat\":" + forecast.getLat() + ",";
+        json += "\"lon\":" + forecast.getLon();
+        json += "}";
+        return json;
+    }
+
+    // Convert WeatherForecast list to JSON string
+    private String toJSON(List<WeatherForecast> forecastList) {
+        StringBuilder jsonBuilder = new StringBuilder("[");
+        for (WeatherForecast forecast : forecastList) {
+            jsonBuilder.append(toJSON(forecast)).append(",");
+        }
+        if (forecastList.size() > 0) {
+            jsonBuilder.deleteCharAt(jsonBuilder.length() - 1); // Remove the last comma
+        }
+        jsonBuilder.append("]");
+        return jsonBuilder.toString();
+    }
+
+    // Additional methods for converting WeatherForecast to JSON
+    private String getCurrentWeatherJSON(String location) {
+        WeatherForecast forecast = getCurrentWeather(location);
+        return toJSON(forecast);
+    }
+
+    private String getWeatherForecastJSON(String location, Date date) {
+        List<WeatherForecast> forecastList = getWeatherForecast(location, date);
+        return toJSON(forecastList);
+    }
+
+    private String getCordForecastJSON(double lat, double lon) {
+        WeatherForecast forecast = getCordForecast(lat, lon);
+        return toJSON(forecast);
+    }
+
+    private String searchCityByWeatherJSON(String weather) {
+        WeatherForecast forecast = searchCityByWeather(weather);
+        return toJSON(forecast);
+    }
 }
