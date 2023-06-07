@@ -142,7 +142,7 @@ public class WeatherServiceTest {
         String invalidLocation = "";
 
         // Act and Assert
-        assertThrows(IllegalArgumentException.class, () -> sut.getWeatherForecast(invalidLocation, new Date()))
+        assertThrows(IllegalArgumentException.class, () -> sut.getWeatherForecast(invalidLocation, new Date()));
     }
 
     @Test
