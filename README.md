@@ -15,6 +15,7 @@ Väderserviceapplikationen är ett projekt som tillhandahåller väderprognoser 
 + sedan är det bara att starta test klassen
 What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
 
+## Dependencies
 * [junit jupiter 5]https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.7.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.9.3)](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.9.3
 * [Mockito core] https://mvnrepository.com/artifact/org.mockito/mockito-core/5.3.1
 
