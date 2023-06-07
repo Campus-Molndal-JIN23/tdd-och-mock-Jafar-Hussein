@@ -1,13 +1,16 @@
 package Test;
 
-
-import com.google.gson.Gson;
+import java.util.Date;
+import WeatherClasses.WeatherApi;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.Mockito;
 import WeatherClasses.WeatherForecast;
 import WeatherClasses.WeatherService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -15,37 +18,75 @@ import static org.mockito.Mockito.when;
 
 public class WeatherServiceTest {
     @Mock
-    private WeatherClasses.ExternalWeatherService externalService;
-
-    private WeatherService weatherService;
+    private WeatherApi weatherApi;
+    private WeatherService sut;
 
     @BeforeEach
     public void setup() {
-        MockitoAnnotations.initMocks(this);
-        weatherService = new WeatherService(externalService);
+        // Skapa en mock WeatherApi
+        weatherApi = Mockito.mock(WeatherApi.class);
+
+        // Skapa en WeatherService-instans med mock WeatherApi
+        sut = new WeatherService(weatherApi);
     }
 
-    @Test //metod för att testa om en stad finns genom att söka efter koordinater
-    public void testGetWeatherForecast_ValidCoordinates_ReturnsValidForecast() {
-        // Prepare mock JSON response string
-        String mockJsonResponse = "{ \"coord\": { \"lon\": 11.97, \"lat\": 57.71 }, \"weather\": [ { \"id\": 804, \"main\": \"Clouds\", \"description\": \"overcast clouds\", \"icon\": \"04d\" } ], \"base\": \"stations\", \"main\": { \"temp\": 20.59, \"feels_like\": 20.13, \"temp_min\": 18.89, \"temp_max\": 21.74, \"pressure\": 1013, \"humidity\": 67 }, \"visibility\": 10000, \"wind\": { \"speed\": 5.14, \"deg\": 210, \"gust\": 7.2 }, \"clouds\": { \"all\": 90 }, \"dt\": 1599478913, \"sys\": { \"type\": 1, \"id\": 1752, \"country\": \"SE\", \"sunrise\": 1599457990, \"sunset\": 1599510755 }, \"timezone\": 7200, \"id\": 2711537, \"name\": \"Gothenburg\", \"cod\": 200 }";
+    @Test
+    public void testGetCurrentWeather() {
+        // Skapa en mock WeatherForecast-objekt
+        WeatherForecast mockForecast = Mockito.mock(WeatherForecast.class);
 
-        // Deserialize the mock JSON response into a WeatherForecast object using Gson
-        Gson gson = new Gson();
-        WeatherForecast expectedForecast = gson.fromJson(mockJsonResponse, WeatherForecast.class);
+        // Definiera platsen för prognosen
+        String location = "City";
 
-        // Configure the mock to return the expected forecast
-        when(externalService.getCordForecast(11.97, 57.71)).thenReturn(expectedForecast);
+        // Mocka beteendet för den externa tjänsten
+        when(weatherApi.getCurrentForecast(location)).thenReturn(mockForecast);
 
-        // Invoke the WeatherService method
-        WeatherForecast actualForecast = weatherService.getCordForecast(11.97, 57.71);
+        // Anropa metoden som ska testas
+        WeatherForecast actualForecast = sut.getCurrentWeather(location);
 
-        // Validate the result
-        assertEquals(expectedForecast, actualForecast);
+        // Verifiera resultatet
+        assertEquals(mockForecast, actualForecast);
+    }
+    @Test
+    public void testGetWeatherForecast() {
+        // Skapa en mock WeatherForecast-objekt
+        WeatherForecast mockForecast = mock(WeatherForecast.class);
 
-        // Verify that the external service was called with the correct parameters
-        verify(externalService, times(1)).getCordForecast(11.97, 57.71);
+        // Definiera beteendet för mockobjektet
+        when(mockForecast.getTemperature()).thenReturn(25.5);
+        when(mockForecast.getWindSpeed()).thenReturn(12.3);
+        when(mockForecast.getClouds()).thenReturn(75);
+        when(mockForecast.getCity()).thenReturn("City1");
+        when(mockForecast.getCountry()).thenReturn("Country1");
+        when(mockForecast.getDate()).thenReturn(new Date());
+
+        // Mocka den förväntade prognoslistan
+        List<WeatherForecast> expectedForecastList = new ArrayList<>();
+        expectedForecastList.add(mockForecast);
+
+         // Definiera platsen och datumet för prognosen
+        String location = "City";
+        Date date = new Date();
+
+        // Mocka beteendet för den externa tjänsten
+        when(weatherApi.getForecast(location, date)).thenReturn(expectedForecastList);
+
+        // Anropa metoden som ska testas
+        List<WeatherForecast> actualForecastList = sut.getWeatherForecast(location, date);
+
+        // Verifiera resultatet
+        assertEquals(expectedForecastList, actualForecastList);
     }
 
-    // ... other test methods ...
+
+    @Test
+    public void testUpdateWeather() {
+        // Anropa metoden som ska testas
+        sut.updateWeather("location");
+
+        // Verifiera att WeatherApi.updateWeather() metoden blev anropad
+        Mockito.verify(weatherApi).updateWeather("location");
+    }
+
+
 }
