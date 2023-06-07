@@ -1,65 +1,28 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/-Un0hjO8)
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-7f7980b617ed060a017424585567c406b6ee15c891e84e1186181d67ecf80aa0.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=11285013)
-# Project name
+# Jafars Weather Service
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+Väderserviceapplikationen är ett projekt som tillhandahåller väderprognoser och relaterade funktioner. Den integrerar med en Väder-API för att hämta exakt väderinformation. Projektet följer metoden Test-Driven Development (TDD), vilket säkerställer kodkvalitet genom rigorös testning. Mockobjekt används för att isolera kod under testning. Implementerat i Java, består applikationen av klasser som VäderService, VäderAPI och Väderprognos. Projektet prioriterar modulär design, tydlig uppdelning av ansvar och hantering av ogiltiga inmatningar. Sammantaget levererar det en pålitlig och effektiv väderservice som gör det möjligt för användare att planera sina aktiviteter på ett effektivt sätt.
 
 ## Table of Contents (Optional)
 
-If your README is long, add a table of contents to make it easy for users to find what they need.
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [License](#license)
-
 ## Installation
-
++ ladda ner git
++ clona denna repository
++ se till så att du har rätt jdk
++ libraries kommer var i pom.xml så behövs inte laddas ner
++ sedan är det bara att starta test klassen
 What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
 
-## Usage
-
-Provide instructions and examples for use. Include screenshots as needed.
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
-
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
-
-## Credits
-
-List your collaborators, if any, with links to their GitHub profiles.
-* [member 1](https://github.com/person1)
-* [member 2](https://github.com/person1)
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-* [junit jupiter 5](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.7.0)
-
-If you followed tutorials, include links to those here as well.
+* [junit jupiter 5]https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.7.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.9.3)](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.9.3
+* [Mockito core] https://mvnrepository.com/artifact/org.mockito/mockito-core/5.3.1
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [MIT License](https://choosealicense.com/licenses/mit/).
+[MIT License](https://choosealicense.com/licenses/mit/).
 
----
-
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
-
-## Badges
-
-![badmath](https://img.shields.io/github/languages/top/lernantino/badmath)
-
-Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-
-## Features
 
 If your project has a lot of features, list them here.
 
