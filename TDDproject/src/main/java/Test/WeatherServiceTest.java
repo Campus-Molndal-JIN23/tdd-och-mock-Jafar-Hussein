@@ -32,27 +32,30 @@ public class WeatherServiceTest {
 
     @Test
     public void testGetCurrentWeather() {
-        // Skapa en mock WeatherForecast-objekt
+        // Arrange
+        // Create a mock WeatherForecast object
         WeatherForecast mockForecast = Mockito.mock(WeatherForecast.class);
 
-        // Definiera platsen för prognosen
+        // Define the location for the forecast
         String location = "Gothenburg";
 
-        // Mocka beteendet för den externa tjänsten
+        // Mock the behavior of the weatherApi
         when(weatherApi.getCurrentForecast(location)).thenReturn(mockForecast);
 
-        // Anropa metoden som ska testas
+        // Act
+        // Call the method under test
         WeatherForecast actualForecast = sut.getCurrentWeather(location);
 
-        // Verifiera resultatet
+        // Assert
+        // Verify the expected result
         assertEquals(mockForecast, actualForecast);
     }
+
     @Test
     public void testGetWeatherForecast() {
-        // Skapa en mock WeatherForecast-objekt
+        // Arrange
+        // Create a mock WeatherForecast object
         WeatherForecast mockForecast = mock(WeatherForecast.class);
-
-        // Definiera beteendet för mock objektet
         when(mockForecast.getTemperature()).thenReturn(25.5);
         when(mockForecast.getWindSpeed()).thenReturn(12.3);
         when(mockForecast.getClouds()).thenReturn("Sunny");
@@ -60,23 +63,43 @@ public class WeatherServiceTest {
         when(mockForecast.getCountry()).thenReturn("Sweden");
         when(mockForecast.getDate()).thenReturn(new Date());
 
-        // Mocka den förväntade prognoslistan
+        // Define the expected forecast list
         List<WeatherForecast> expectedForecastList = new ArrayList<>();
         expectedForecastList.add(mockForecast);
 
-         // Definiera platsen och datumet för prognosen
+        // Define the location and date for the forecast
         String location = "Stockholm";
         Date date = new Date();
 
-        // Mocka beteendet för den externa tjänsten
+        // Mock the behavior of the weatherApi
         when(weatherApi.getForecast(location, date)).thenReturn(expectedForecastList);
 
-        // Anropa metoden som ska testas
+        // Act
+        // Call the method under test
         List<WeatherForecast> actualForecastList = sut.getWeatherForecast(location, date);
 
-        // Verifiera resultatet
+        // Assert
+        // Verify the expected result
         assertEquals(expectedForecastList, actualForecastList);
     }
+
+    @Test
+    public void testGetCordForecast() {
+        // Arrange
+        double lat = 52.520008; // Example latitude value
+        double lon = 13.404954; // Example longitude value
+
+        WeatherForecast mockForecast = mock(WeatherForecast.class);
+        when(weatherApi.getCordForecast(lat, lon)).thenReturn(mockForecast);
+
+        // Act
+        WeatherForecast actualForecast = sut.getCordForecast(lat, lon);
+
+        // Assert
+        assertEquals(mockForecast, actualForecast);
+        verify(weatherApi).getCordForecast(lat, lon);
+    }
+
 
     @Test
     public void testSearchCityByWeather(){
@@ -93,11 +116,71 @@ public class WeatherServiceTest {
 
     @Test
     public void testUpdateWeather() {
-        // Anropa metoden som ska testas
-        sut.updateWeather("location");
+        // Arrange
+        String value = "Stockholm";
 
-        // Verifiera att WeatherApi.updateWeather() metoden blev anropad
-        Mockito.verify(weatherApi).updateWeather("location");
+        // Act
+        // Call the method under test
+        sut.updateWeather(value);
+
+        // Assert
+        // Verify that the weatherApi.updateWeather() method was called with the correct location
+        Mockito.verify(weatherApi).updateWeather(value);
+    }
+    @Test
+    public void testGetCurrentWeather_InvalidLocation() {
+        // Arrange
+        String invalidLocation = null;
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> sut.getCurrentWeather(invalidLocation));
+    }
+
+    @Test
+    public void testGetWeatherForecast_InvalidLocation() {
+        // Arrange
+        String invalidLocation = "";
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> sut.getWeatherForecast(invalidLocation, new Date()))
+    }
+
+    @Test
+    public void testGetWeatherForecast_InvalidDate() {
+        // Arrange
+        String location = "Stockholm";
+        Date invalidDate = null;
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> sut.getWeatherForecast(location, invalidDate));
+    }
+
+    @Test
+    public void testGetCordForecast_InvalidCoordinates() {
+        // Arrange
+        double invalidLat = 100.0;
+        double invalidLon = -200.0;
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> sut.getCordForecast(invalidLat, invalidLon));
+    }
+
+    @Test
+    public void testSearchCityByWeather_InvalidWeather() {
+        // Arrange
+        String invalidWeather = null;
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> sut.searchCityByWeather(invalidWeather));
+    }
+
+    @Test
+    public void testUpdateWeather_InvalidLocation() {
+        // Arrange
+        String invalidLocation = "";
+
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> sut.updateWeather(invalidLocation));
     }
 
 

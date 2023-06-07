@@ -3,17 +3,19 @@ package WeatherClasses;
 import java.util.Date;
 
 public class WeatherForecast {
-    private double temperature;
-    private double windSpeed;
-    private String clouds;
-    private String city;
-    private String country;
+    private final double temperature;
+    private final double windSpeed;
+    private final String clouds;
+    private final String city;
+    private final String country;
 
-    private Date date;
+    private final Date date;
 
-    private String weather;
+    private final String weather;
+    private double lat;
+    private double lon;
 
-    public WeatherForecast(double temperature, double windSpeed, String clouds, String city, String country, Date date, String weather) {
+    public WeatherForecast(double temperature, double windSpeed, String clouds, String city, String country, Date date, String weather, double lat, double lon) {
         this.temperature = temperature;
         this.windSpeed = windSpeed;
         this.clouds = clouds;
@@ -21,51 +23,46 @@ public class WeatherForecast {
         this.country = country;
         this.date = date;
         this.weather = weather;
+        this.lat = lat;
+        this.lon = lon;
     }
 
     public double getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
+    public double getLat() {
+        return lat;
+    }
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+    public double getLon() {
+        return lon;
+    }
+    public void setLon(double lon) {
+        this.lon = lon;
     }
 
     public double getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(double windSpeed) {
-        this.windSpeed = windSpeed;
-    }
 
     public String getClouds() {
         return clouds;
     }
 
-    public void setClouds(String clouds) {
-        this.clouds = clouds;
-    }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
 
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public void setWeather(String weather) {
-        this.weather = weather;
-    }
 
     public String getWeather() {
         return weather;
@@ -74,8 +71,5 @@ public class WeatherForecast {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }
 
