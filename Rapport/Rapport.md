@@ -7,7 +7,7 @@ Jag använde mig av senaste versionen av Junit 5 för att kunna skapa dessa unit
 + ### Mockito
 Jag använde mig även av senaste versionen mockito för att kunna simulera en api för att kunna testa mina metoder.
 + ### Json
-Jag använde mig av json för att kunna läsa in en json fil.
+Jag använde mig av den senaste versionen av json för att kunna läsa json filer.
 
 ### TDD
 Test-Driven Development (TDD) är en metodik där testerna skrivs före koden. Genom att först definiera testfallen och sedan implementera koden för att passera testen säkerställer TDD att koden uppfyller sina krav och fungerar som förväntat. Fördelarna med att använda TDD inkluderar:
