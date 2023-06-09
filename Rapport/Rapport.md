@@ -26,7 +26,7 @@ Mock-objekt används i testning för att isolera den delen av koden som testas f
 ### konstruktor
 + WeatherService(WeatherApi externalService): Skapar en ny instans av WeatherService med en extern tjänst som parameter. Den externa tjänsten implementerar WeatherApi-gränssnittet och används för att hämta väderdata.
 
-### Metoder
+### Metoder som testas
 + #### getCurrentWeather(String location):
 + Returnerar den aktuella väderprognosen för en given plats. Om platsen är ogiltig (null eller tom sträng) kastas ett undantag.
 + #### getWeatherForecast(String location, Date date):
