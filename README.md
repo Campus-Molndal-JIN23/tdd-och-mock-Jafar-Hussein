@@ -11,7 +11,7 @@ WeatherService Testning med JUnit och Mockito är ett projekt som syftar till at
 + se till så att du har rätt jdk
 + libraries kommer var i pom.xml så behövs inte laddas ner
 + sedan är det bara att starta test klassen
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
+
 
 ## Dependencies
 * [junit jupiter 5]https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter/5.7.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.9.3)](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.9.3
